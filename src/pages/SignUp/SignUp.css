@@ -1,0 +1,100 @@
+/* SignUp.css */
+
+/* Background image for the entire body */
+body {
+    background-image: url('https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg');
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-attachment: fixed; /* Make the image fixed with respect to the viewport */
+    color: #ffffff; /* White text for contrast */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Container for the sign-up form */
+  .SignUp-container {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.959);
+    width: 300px;
+    margin-top: 50px;
+    overflow: hidden; /* Ensure children do not overflow */
+  }
+  
+  /* Style for the sign-up header */
+  .signup-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff; /* White text */
+  }
+  
+  /* Style for input container */
+  .form-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for form labels */
+  .SignUp-container label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #070606; /* White text */
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
+  /* Style for input fields */
+  .SignUp-container .input {
+       width: 100%;
+      padding: 8px 8px 8px 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: orange;
+      color: #000;
+      font-size: 16px;
+      box-sizing: border-box;
+  }
+  
+  /* Change the input background color when focused */
+  .SignUp-container .input:focus {
+    background-color: #fff; /* Slightly lighter dark blue on focus */
+    outline: none;
+  }
+  
+  /* Move the label up when the input is focused or has text */
+  .SignUp-container .input:focus + label,
+  .SignUp-container .input:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    color: #ffffff;
+  }
+  
+  /* Style for submit button */
+  .SignUp-container .submit-button {
+    width: 50%; /* Adjust width as needed */
+    padding: 10px;
+    margin-left: 65px;
+    border: none;
+    border-radius: 4px;
+    background-color: green; /* Green background */
+    color: #ffffff; /* White text */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Add some space between button and inputs */
+  }
+  
+  .SignUp-container .submit-button:hover {
+    background-color: #0077cc; /* Darker shade of blue on hover */
+  }
+  
