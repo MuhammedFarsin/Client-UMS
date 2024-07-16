@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../axios/axiosInstance";
 import { FaCamera } from "react-icons/fa";
+import { toast } from "react-toastify";
 import "./AdminEditProfile.css";
 
 function AdminEditProfile() {
@@ -13,6 +14,42 @@ function AdminEditProfile() {
   const [profilePic, setProfilePic] = useState(null);
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
+
+  const validateInputs = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10}$/;
+    const usernameRegex = /^[A-Za-z]+$/;
+
+    if (!username.trim()) {
+      toast.error("Username is required");
+      return false;
+    }
+    if (!email.trim()) {
+      toast.error("Email is required");
+      return false;
+    }
+    if (!phone.trim()) {
+      toast.error("Phone number is required");
+      return false;
+    }
+
+    if (!emailRegex.test(email)) {
+      toast.error("Invalid email format");
+      return false;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      toast.error("Phone number should be exactly 10 digits");
+      return false;
+    }
+
+    if (!usernameRegex.test(username) || /^(.)\1+$/.test(username)) {
+      toast.error("Username should contain only letters and not be repetitive");
+      return false;
+    }
+
+    return true;
+  };
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -44,6 +81,10 @@ function AdminEditProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!validateInputs()) {
+      return;
+    }
+
     const data = {
       username,
       email,
@@ -68,13 +109,14 @@ function AdminEditProfile() {
 
         data.profilePic = uploadRes.data.secure_url;
       }
-      
 
       await axiosInstance.patch(`/admin/update-edit-user/${userId}`, data);
 
       navigate("/admin-dashboard");
+      toast.success("Profile updated successfully!");
     } catch (error) {
       console.error("Error updating profile:", error);
+      toast.error("Failed to update profile");
     }
   };
 
