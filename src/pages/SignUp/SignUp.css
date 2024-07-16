@@ -83,7 +83,6 @@ body {
   .SignUp-container .submit-button {
     width: 50%; /* Adjust width as needed */
     padding: 10px;
-    margin-left: 65px;
     border: none;
     border-radius: 4px;
     background-color: green; /* Green background */
@@ -91,7 +90,8 @@ body {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 20px; /* Add some space between button and inputs */
+    margin-top: 20px;
+    justify-content: center; /* Add some space between button and inputs */
   }
   
   .SignUp-container .submit-button:hover {

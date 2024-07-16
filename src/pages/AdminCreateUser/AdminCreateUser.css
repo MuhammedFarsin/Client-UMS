@@ -1,0 +1,45 @@
+.admin-create-user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+  }
+  
+  .admin-create-user-form {
+    /* background: #fff; */
+    padding: 75px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-create-user-form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .admin-create-user-form div {
+    margin-bottom: 5px;
+  }
+  
+  .admin-create-user-form label {
+    display: block;
+    /* margin-bottom: 5px; */
+  }
+  
+  .admin-create-user-form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .admin-create-user-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+  }

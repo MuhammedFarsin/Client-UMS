@@ -7,6 +7,8 @@ import SignUp from "./pages/SignUp/SignUp.jsx";
 import AdminDashboard from "./pages/AdminDashborad/AdminDashborad.jsx";
 import ProtectedAuthRoute from "./routes/ProtectedAuthRoute.jsx";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
+import AdminEditProfile from "./pages/AdminEditProfile/AdminEditProfile.jsx";
+import AdminCreateUser from "./pages/AdminCreateUser/AdminCreateUser.jsx";
 
 function App() {
   return (
@@ -44,7 +46,39 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route
+          path="/admin-dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/edit-user/:userId"
+          element={
+            <ProtectedRoute>
+              <AdminEditProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/delete-user/:userId"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/create-user"
+          element={
+            <ProtectedRoute>
+              <AdminCreateUser />
+            </ProtectedRoute>
+          }
+        />
+        {/* <Route path="/admin-dashboard" element={<AdminDashboard />} /> */}
       </Routes>
     </Router>
   );

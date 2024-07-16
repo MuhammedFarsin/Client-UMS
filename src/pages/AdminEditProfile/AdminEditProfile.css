@@ -1,0 +1,171 @@
+/* admin.css */
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.admin-home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: contain; /* Ensure entire image is visible */
+  background-position: center;
+  color: white;
+}
+
+.admin-edit-profile-container {
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Slightly different shade of dark blue for the box with opacity */
+  color: white;
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  animation: admin-fadeIn 1s ease-in-out;
+}
+
+.admin-profile-image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.admin-profile-image {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Background color for the placeholder */
+  position: relative;
+}
+
+.admin-profile-image img {
+  width: auto; /* Ensure image width adjusts to maintain aspect ratio */
+  height: auto; /* Ensure image height adjusts to maintain aspect ratio */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.admin-placeholder-icon {
+  font-size: 3rem;
+  color: white; /* Color of the camera icon */
+}
+
+.admin-file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.admin-remove-image-button {
+  position: absolute;
+  top: 0;
+  right: -20px;
+  background: none;
+  border-radius: 50%;
+  border: 1px solid black;
+  border: none;
+  cursor: pointer;
+  color: rgb(5, 4, 4);
+  font-size: 1.5em;
+}
+
+.admin-welcome-message {
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.admin-email,
+.admin-phone {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.admin-logout-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-logout-button:hover {
+  background-color: #d32f2f;
+}
+
+@keyframes admin-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-login-message {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+/* Styling for input fields and button */
+.admin-edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-edit-form div {
+  margin-bottom: 20px;
+}
+
+.admin-edit-form label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.admin-edit-form input[type="text"],
+.admin-edit-form input[type="email"],
+.admin-edit-form input[type="tel"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.admin-edit-form button[type="submit"] {
+  background-color: green;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.admin-edit-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
