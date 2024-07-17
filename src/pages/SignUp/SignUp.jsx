@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../axios/axiosInstance";
+import { toast } from "react-toastify";
 import "./SignUp.css";
 
 function SignUp() {
@@ -8,28 +9,52 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (!username) newErrors.username = "Username is required";
-    if (!email) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Email address is invalid";
+  const validateInputs = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10}$/;
+    const usernameRegex = /^[A-Za-z]+$/;
+
+    if (!username.trim()) {
+      toast.error("Username is required");
+      return false;
     }
-    if (!phone) newErrors.phone = "Phone number is required";
-    if (!password) newErrors.password = "Password is required";
-    return newErrors;
+    if (!email.trim()) {
+      toast.error("Email is required");
+      return false;
+    }
+    if (!phone.trim()) {
+      toast.error("Phone number is required");
+      return false;
+    }
+    if (!password.trim()) {
+      toast.error("Password is required");
+      return false;
+    }
+
+    if (!emailRegex.test(email)) {
+      toast.error("Invalid email format");
+      return false;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      toast.error("Phone number should be exactly 10 digits");
+      return false;
+    }
+
+    if (!usernameRegex.test(username) || /^(.)\1+$/.test(username)) {
+      toast.error("Username should contain only letters and not be repetitive");
+      return false;
+    }
+
+    return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formErrors = validateForm();
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
+    if (!validateInputs()) {
       return;
     }
 
@@ -41,19 +66,20 @@ function SignUp() {
         password,
       });
       console.log(response.data);
-      // Handle successful response
-
+      // Show success message
+      toast.success("Signup successful!");
       // Redirect to login page
       navigate("/");
     } catch (error) {
       console.error(error);
       // Handle error response
+      toast.error("Signup failed. Please try again.");
     }
   };
+
   return (
     <div className="SignUp-container">
       <h1 className="signup-heading">Sign Up</h1>
-
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input
@@ -67,9 +93,6 @@ function SignUp() {
             autoComplete="off"
             required
           />
-          {errors.username && (
-            <p className="text-red-600 text-sm">{errors.username}</p>
-          )}
           <label htmlFor="username">Username</label>
         </div>
         <div className="form-group">
@@ -84,9 +107,6 @@ function SignUp() {
             autoComplete="off"
             required
           />
-          {errors.email && (
-            <p className="text-red-600 text-sm">{errors.email}</p>
-          )}
           <label htmlFor="email">Email</label>
         </div>
         <div className="form-group">
@@ -101,9 +121,6 @@ function SignUp() {
             autoComplete="off"
             required
           />
-          {errors.phone && (
-            <p className="text-red-600 text-sm">{errors.phone}</p>
-          )}
           <label htmlFor="phone">Phone</label>
         </div>
         <div className="form-group">
@@ -118,9 +135,6 @@ function SignUp() {
             autoComplete="current-password"
             required
           />
-          {errors.password && (
-            <p className="text-red-600 text-sm">{errors.password}</p>
-          )}
           <label htmlFor="password">Password</label>
         </div>
         <button type="submit" className="submit-button">

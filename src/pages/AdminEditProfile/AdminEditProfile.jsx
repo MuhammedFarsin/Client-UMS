@@ -69,6 +69,13 @@ function AdminEditProfile() {
 
   const handleProfilePicChange = (e) => {
     const file = e.target.files[0];
+    const validImageTypes = ["image/jpeg", "image/png", "image/gif"];
+
+    if (file && !validImageTypes.includes(file.type)) {
+      toast.error("Only image files (png, jpeg, gif) are allowed");
+      return;
+    }
+
     if (file) {
       setProfilePic(file);
     }
