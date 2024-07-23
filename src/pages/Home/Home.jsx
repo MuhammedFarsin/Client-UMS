@@ -6,12 +6,14 @@ import { FaCamera } from "react-icons/fa";
 
 import "./Home.css";
 
+
 function Home() {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    localStorage.removeItem('accessToken')
     dispatch(removeUser());
     dispatch(logout());
     navigate("/");

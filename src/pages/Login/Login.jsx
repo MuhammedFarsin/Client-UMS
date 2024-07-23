@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { login } from "../../redux/slices/authSlice";
 import { setUser } from "../../redux/slices/userSlice";
 import axiosInstance from "../../axios/axiosInstance";
+import { toast } from "react-toastify";
 import "./Login.css"
 
 function Login() {
@@ -16,7 +17,7 @@ function Login() {
   const validateForm = () => {
     const newErrors = {};
     if (!username) {
-      newErrors.email = "Email is required";
+      newErrors.email = "Username is required";
     }
     if (!password) newErrors.password = "Password is required";
     return newErrors;
@@ -37,11 +38,17 @@ function Login() {
       });
 
       console.log(response.data);
-
+      localStorage.setItem('accessToken', response.data.accessToken)
       dispatch(login());
       dispatch(setUser(response.data.user));
+      toast.success("Login successful!"); // Show success toast
     } catch (error) {
       console.error(error);
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message); // Show error toast from server
+      } else {
+        toast.error("An error occurred. Please try again."); // Show generic error toast
+      }
     }
   };
   return (

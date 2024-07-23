@@ -27,6 +27,7 @@ function AdminDashborad() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    localStorage.removeItem('accessToken')
     dispatch(removeUser());
     dispatch(logout());
     navigate("/");
